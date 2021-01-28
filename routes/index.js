@@ -14,11 +14,10 @@ router.post('/login', UserController.login)
 
 router.get('/logout', UserController.logout)
 
+
 router.use(auth) // ~~~~~~~~~~~~~ Authentication ~~~~~~~~~~
 
-router.get('/', (req, res) => {
-    res.render('home')
-})
+router.get('/', UserController.home)
 
 router.use('/music', musicRouter)
 
