@@ -7,9 +7,11 @@
 </head>
 <body>
     <%- include('../partials/navbar')%>
-    <h1>upload image</h1>
+    <h1 style="text-align: center; margin-top: 20px;">upload image</h1>
 
-    
+    <%- include('../partials/addMusic')%>
+    <div class="card">
+
     <form action="/music/upload/<%= id%>" method="post" enctype="multipart/form-data">
         <br>
         <label for="img">Upload Image:</label><br><br>
@@ -17,5 +19,6 @@
         <br>
         <button type="submit">upload</button>
     </form>
+    </div>
 </body>
 </html>

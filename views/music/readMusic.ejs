@@ -6,9 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <%- include('../partials/navbar')%>
+    <%- include('../partials/navbar') %>
+    <%- include('../partials/home') %>
+    
     <h1>My Playlist</h1>
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>Title</th>
@@ -29,17 +31,17 @@
                     <td> <%= data[i].genre %>  </td>
                     <td> <%= data[i].released_year %>  </td>
                     <td>
-                        <a href="/music/edit/<%= data[i].id %>">edit</a>
-                        <a href="/music/delete/<%= data[i].id %>" onclick="return confirm('Apakah anda yakin?')" >delete</a>
+                        <a href="/music/edit/<%= data[i].id %>"><button class="btn">edit</button></a>
+                        <a href="/music/delete/<%= data[i].id %>" onclick="return confirm('Apakah anda yakin?')" ><button class="btn">delete</button></a>
                     </td>
 
-                    <td> <a href="/music/othersLiked/<%= data[i].id %>"> see other user who liked this music </a></td>
+                    <td> <a href="/music/othersLiked/<%= data[i].id %>"> <button class="btn">see other user who liked this music</button></a></td>
 
                     <% if (data[i].imgData) { %>
                         <td><img src="/uploads/<%= data[i].imgData%>" alt="album Img" width="150" ></td>
 
                     <% } else { %>
-                        <td><a href="/music/upload/<%= data[i].id%>">upload images</a></td>
+                        <td><a href="/music/upload/<%= data[i].id%>"><button class="btn">upload images</button></a></td>
                     <% } %>
                     <td> <%= data[i].refMusics() %></td>
 
