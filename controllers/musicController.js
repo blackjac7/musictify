@@ -29,8 +29,9 @@ class MusicController {
         })
         .then((data) => {
             musicId = data.id
-            return User.findAll({
+            return User.findAll({ where : {
                 username: req.session.username 
+                }
             })
         })
         .then(usr => {
@@ -132,7 +133,19 @@ class MusicController {
     }
 
     static seePlaylist (req, res) {
-        
+        User.findAll({
+            where: {
+                id: +req.params.id
+            },
+            include: [Music]
+        })
+        .then( info => {
+            let data = info[0].Music
+            res.render('music/userPlaylist', {data})
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 }
 
