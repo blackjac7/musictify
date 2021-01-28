@@ -22,7 +22,7 @@ router.get('/seePlaylist/:id', MusicController.seePlaylist)
 
 router.get('/othersLiked/:id', MusicController.othersLiked)
 
-router.get('/addToMyPlaylist', MusicController.addToMyPlaylist)
+router.get('/addToMyPlaylist/:id', MusicController.addToMyPlaylist)
 
 
 

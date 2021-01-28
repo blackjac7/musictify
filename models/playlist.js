@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Playlist.init({
-    music_id: DataTypes.INTEGER,
+    music_id: {
+      type: DataTypes.INTEGER,
+      unique: {
+        msg: 'sudah ada di playlist!'
+      }
+    },
     user_id: DataTypes.INTEGER
   }, {
     sequelize,

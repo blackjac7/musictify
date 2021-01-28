@@ -137,7 +137,7 @@ class MusicController {
             where: {
                 id: +req.params.id
             },
-            include: [Music]
+            include: [Music],
         })
         .then( info => {
             let data = info[0].Music
@@ -157,7 +157,6 @@ class MusicController {
         })
         .then(info=> {
             let data = info[0].Users
-            //res.send(info[0].Users[0].name)
             res.render('music/othersLiked', {data})
         })
         .catch(err=>{
@@ -166,15 +165,27 @@ class MusicController {
     }
 
     static addToMyPlaylist (req, res) {
-        Playlist.Create({
-            
+        let user
+        User.findAll({ where : {
+            username: req.session.username 
+            }
         })
-        .then( data => {
+        .then(data => {
+            user = data[0].id
+            return Playlist.create({
+                music_id: +req.params.id,
+                user_id: user
+            })
+        })
+        .then((info ) => {
+            
+            res.redirect(`/music/seePlaylist/${user}`)
 
         })
-        .catch (err => {
+        .catch(err =>  {
             res.send(err)
         })
+
     }
 }
 
