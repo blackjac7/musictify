@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const musicRouter = require('./music')
 const userRouter = require('./user')
-const HomeController = require('../controllers/homeController')
 const UserController = require('../controllers/userController')
 const auth = require('../middleware/auth')
 
