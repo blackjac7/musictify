@@ -48,7 +48,8 @@ module.exports = (sequelize, DataTypes) => {
           msg: ` Released Year should not be empty!`
         }
       }
-    }
+    },
+    imgData: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Music',

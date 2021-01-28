@@ -1,4 +1,5 @@
 const { Music } = require('../models/index')
+const upload = require('../helpers/upload')
 
 class MusicController {
     static readMusic(req, res) {
@@ -55,7 +56,6 @@ class MusicController {
             artist: req.body.artist,
             genre: req.body.genre,
             released_year: req.body.released_year
-            //plus gambar
         }, { 
             where: {
             id: +req.params.id
@@ -88,16 +88,33 @@ class MusicController {
     }
 
     static uploadImgPost(req, res) {
-    
-        // upload(req,res. (err) => {
-        //     if (err) {
-        //         res.send(err)
-        //     } else {
-        //         console.log(req.file);
-        //         res.send('berhasil upload gambar')
-        //     }
-        // })
+        upload(req,res, (err) => {
+            if (err) {
+                res.send(err)
+            } else {
+                if (req.file == undefined) {
+                    res.send("no file!")
+                } else {
+                    Music.update({
+                        imgData: req.file.filename
+                    }, {
+                        where: {
+                            id: +req.params.id
+                        }
+                    })
+                    .then((data) => [
+                        res.redirect('/music')
+                    ])
+                    .catch(err=>{
+                        res.send(err)
+                    })
+
+                }
+            }
+        })
     }
 }
 
+
 module.exports = MusicController
+

@@ -4,18 +4,18 @@ const multer = require('multer')
 const ejs = require('ejs')
 const path = require('path')
 
-//set storage engine
-const storage = multer.diskStorage({
-    destination: './public/uploads',
-    filename: function (req, file ,cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-    }
-})
+// //set storage engine
+// const storage = multer.diskStorage({
+//     destination: './public/uploads',
+//     filename: function (req, file ,cb) {
+//         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+//     }
+// })
 
-// init upload
-const upload = multer({
-    storage: storage
-}).single('img')
+// // init upload
+// const upload = multer({
+//     storage: storage
+// }).single('img')
 
 const app = express()
 const port = 4000
