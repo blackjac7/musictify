@@ -55,6 +55,7 @@ class Controller {
             User.findOne({ where: { username } })
             .then(data => {
                 if (data && comparePass(password, data.password)) {
+                    req.session.username = username
                     res.redirect(`/`)
                 }else {
                     const wrongPass = ['Invalid Password']
@@ -64,6 +65,11 @@ class Controller {
                 res.send(err)
             })
         }
+    }
+
+    static logout(req, res){
+        delete req.session.username
+        res.redirect('/login')
     }
 }
 
