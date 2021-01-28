@@ -1,4 +1,7 @@
 'use strict';
+
+const { hashPass } = require('../helpers/hashPass.js')
+
 const {
   Model
 } = require('sequelize');
@@ -18,11 +21,44 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Name should not be empty!'
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Email should not be empty!'
+        }
+      }
+    },
+    username: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Username should not be empty!'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Password should not be empty!'
+        }
+      }
+    },
   }, {
+    hooks: {
+      beforeCreate: (instance, option) => {
+        instance.password = hashPass(instance.password)
+      }
+    },
     sequelize,
     modelName: 'User',
   });

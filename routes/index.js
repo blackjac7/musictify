@@ -1,8 +1,20 @@
 const router = require('express').Router()
-
+const musicRouter = require('./music')
+const UserController = require('../controllers/userController')
 
 router.get('/', (req, res) => {
-    res.send('Homepage')
+    res.render('home')
 })
+
+router.use('/music', musicRouter)
+
+router.use('/user', UserController)
+
+router.get('/register', UserController.formRegister)
+router.post('/register', UserController.register)
+
+router.get('/login', UserController.formLogin)
+router.post('/login', UserController.login)
+
 
 module.exports = router

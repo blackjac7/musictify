@@ -18,10 +18,38 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Music.init({
-    title: DataTypes.STRING,
-    artist: DataTypes.STRING,
-    genre: DataTypes.STRING,
-    released_year: DataTypes.INTEGER
+    title:{
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Title should not be empty!'
+        }
+      }
+    },
+    artist: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Artist should not be empty!'
+        }
+      }
+    },
+    genre: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Genre should not be empty!'
+        }
+      }
+    },
+    released_year: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: 'Released Year should not be empty!'
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Music',
