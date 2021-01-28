@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const musicRouter = require('./music')
+const userRouter = require('./user')
 const UserController = require('../controllers/userController')
 
 router.get('/', (req, res) => {
@@ -8,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.use('/music', musicRouter)
 
-router.use('/user', UserController)
+router.use('/user', userRouter)
 
 router.get('/register', UserController.formRegister)
 router.post('/register', UserController.register)

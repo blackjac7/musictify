@@ -12,22 +12,29 @@ class MusicController {
     }
 
     static addMusic(req,res) {
-        res.render('music/addMusic')
+        let errors = req.query.errors
+        res.render('music/addMusic', { errors })
     }
 
     static addMusicPost (req,res) {
-        Music.Create({
+        console.log(req.body.title)
+        Music.create({
             title: req.body.title,
             artist: req.body.artist,
             genre: req.body.genre,
             released_year: req.body.released_year
-            //upload gambar 
         })
-        .then(() => {
+        .then((data) => {
             res.redirect('/music')
         })
         .catch(err => {
-            res.send(err.message)
+            const errorMessages = []
+
+            err.errors.forEach(el => {
+                errorMessages.push(el.message)
+            })
+
+            res.redirect(`/music/add?errors=${errorMessages}`)
         })
     }
 

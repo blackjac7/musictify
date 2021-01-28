@@ -35,29 +35,35 @@ class Controller {
     }
 
     static formLogin(req, res){
-        res.render('login')
+        let errors = []
+
+        if (req.query.errors){
+            errors = req.query.errors.split(',')
+        }
+        
+        res.render('login', { errors })
     }
 
     static login(req, res){
         const { username, password } = req.body
-
-
-        User.findOne({ where: { username } })
-        .then(data => {
-            if (data && comparePass(password, data.password)) {
-            res.redirect(`/`)
-            } else {
-            throw Error('Invalid Password')
-            }
-        }).catch(err => {
-            const errorMessages = []
-
-            err.errors.forEach(el => {
-                errorMessages.push(el.message)
-            })
+        
+        if (!username || !password){
+            const errorMessages = ['username and password required']
 
             res.redirect(`/login?errors=${errorMessages}`)
-        })
+        }else {
+            User.findOne({ where: { username } })
+            .then(data => {
+                if (data && comparePass(password, data.password)) {
+                    res.redirect(`/`)
+                }else {
+                    const wrongPass = ['Invalid Password']
+                    res.redirect(`/login?errors=${wrongPass}`)
+                }
+            }).catch(err => {
+                res.send(err)
+            })
+        }
     }
 }
 
