@@ -5,7 +5,7 @@ class MusicController {
     static readMusic(req, res) {
         Music.findAll()
         .then((data)=> {
-            //res.send(data)
+            //res.send(data[0].refMusic())
             res.render('music/readMusic', { data })
         })
         .catch(err=> {
@@ -161,6 +161,18 @@ class MusicController {
             res.render('music/othersLiked', {data})
         })
         .catch(err=>{
+            res.send(err)
+        })
+    }
+
+    static addToMyPlaylist (req, res) {
+        Playlist.Create({
+            
+        })
+        .then( data => {
+
+        })
+        .catch (err => {
             res.send(err)
         })
     }

@@ -17,9 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
 
-    refMusic(){
+    refMusics(){
       return `${this.artist}_${this.genre}_${this.released_year}`
     }
+
   };
   Music.init({
     title:{
@@ -56,6 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     imgData: DataTypes.STRING,
     refMusic: DataTypes.STRING,
   }, {
+
     sequelize,
     modelName: 'Music',
   });
