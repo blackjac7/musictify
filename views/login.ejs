@@ -6,6 +6,9 @@
     <title>Login</title>
 </head>
 <body>
+    <% errors.forEach(el => { %>
+        <p style="color: red;"><%= el %></p>
+    <% }) %> 
     <form action="/login" method="post">
 
         <label for="">Username</label><br>
@@ -15,6 +18,7 @@
         <input type="password" name="password"><br><br>
 
         <input type="submit" value="Login">
-    </form>
+    </form><br>
+    <a href="/register"><button>Register</button></a>
 </body>
 </html>

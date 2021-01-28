@@ -12,7 +12,7 @@
         <p style="color: red;"><%= errors %></p>
     <% } %> 
 
-    <form action="/music/add" method="post" >
+    <form action="/music/add" method="post">
 
         <label for="title">Music Title:</label><br>
         <input type="title" name="title" placeholder="zoom"><br>
@@ -21,7 +21,7 @@
         <label for="genre">Genre:</label><br>
         <input type="text" name="genre" placeholder="alternative"><br>
         <label for="released_year">Released Year:</label><br>
-        <input type="text" name="released_year" placeholder="2012"><br>
+        <input type="number" name="released_year" placeholder="2012"><br>
         <br>
         <button type="submit">add to my playlist</button>
     </form>
