@@ -4,21 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="styleLogin.css">
 </head>
 <body>
-    <% errors.forEach(el => { %>
-        <p style="color: red;"><%= el %></p>
-    <% }) %> 
-    <form action="/login" method="post">
+    
+    <div class="wrapper">
+        <div class="container">
+            <h1>Welcome to Musictify..</h1>
+            <% errors.forEach(el => { %>
+                <p style="color: red;"><%= el %></p>
+            <% }) %> 
 
-        <label for="">Username</label><br>
-        <input type="text" name="username"><br><br>
+            <form class="form" action="/login" method="post">
 
-        <label for="">Password</label><br>
-        <input type="password" name="password"><br><br>
+                <input type="text" name="username" placeholder="Username" autocomplete="off"><br><br>
+                <input type="password" name="password" placeholder="Password"><br><br>
+        
+                <button type="submit" id="login-button">Login</button><br><br>
+                <a href="/register"><button type="button">Register</button></a>
+            </form><br>
+            
+        </div>
+        
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
 
-        <input type="submit" value="Login">
-    </form><br>
-    <a href="/register"><button>Register</button></a>
+<script>
+     $("#login-button").click(function(event){
+		 event.preventDefault();
+	 
+	 $('form').fadeOut(500);
+	 $('.wrapper').addClass('form-success');
+});
+</script>
 </body>
 </html>

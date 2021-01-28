@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const musicRouter = require('./music')
 const userRouter = require('./user')
+const HomeController = require('../controllers/homeController')
 const UserController = require('../controllers/userController')
 const auth = require('../middleware/auth')
 
@@ -16,9 +17,7 @@ router.get('/logout', UserController.logout)
 
 router.use(auth) // ~~~~~~~~~~~~~ Authentication ~~~~~~~~~~
 
-router.get('/', (req, res) => {
-    res.render('home')
-})
+router.get('/', UserController)
 
 router.use('/music', musicRouter)
 
