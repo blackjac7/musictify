@@ -16,6 +16,7 @@ const path = require('path')
 // const upload = multer({
 //     storage: storage
 // }).single('img')
+app.use(express.static(path.join(__dirname, 'public')))
 
 const app = express()
 const port = 4000
