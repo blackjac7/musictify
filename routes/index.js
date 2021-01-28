@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const musicRouter = require('./music')
-const userRouter = require('./user')
 const UserController = require('../controllers/userController')
 const auth = require('../middleware/auth')
 
@@ -21,8 +20,6 @@ router.use(auth) // ~~~~~~~~~~~~~ Authentication ~~~~~~~~~~
 router.get('/', UserController.home)
 
 router.use('/music', musicRouter)
-
-router.use('/user', userRouter)
 
 
 module.exports = router

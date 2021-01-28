@@ -7,8 +7,11 @@
 </head>
 <body>
     <%- include('../partials/navbar')%>
+    <%- include('../partials/home') %>
+    
     <h1>other liked music</h1>
 
+    <div class="tbl-header">
     <table border="1">
         <thead>
             <tr>
@@ -22,12 +25,12 @@
                 <tr>
                     <td> <%= data[i].name %></td>
                     <td> <%= data[i].username %></td>
-                    <td> <a href="/music/seePlaylist/<%= data[i].id %>">see playlist</a></td>
+                    <td> <a href="/music/seePlaylist/<%= data[i].id %>"><button class="btn">see playlist</button></a></td>
                 </tr>
             <% } %>
         </tbody>
-
     </table>
+    </div>
 
 </body>
 </html>

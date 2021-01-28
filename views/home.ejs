@@ -6,32 +6,39 @@
     <title>Document</title>
 </head>
 <body>
-    <%- include('./partials/navbar')%>
-    <h1>Homepage Musictify</h1>
-    <h2>welcome</h2>
-
-    <h1>users playlist</h1>
-
-    <table border="1">
-        <thead>
-            <tr>
-                <th>name</th>
-                <th>username</th>
-                <th>see music</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (let i = 0; i < data.length; i++) { %>
+    <%- include('./partials/navbar') %>
+    <%- include('./partials/home') %> 
+    <h1 style="margin-top: 30px;">Homepage Musictify</h1>
+    <div class="tbl-header">
+        <table>
+            <thead>
                 <tr>
-                    <td> <%= data[i].name %></td>
-                    <td> <%= data[i].username %></td>
-                    <td> <a href="/music/seePlaylist/<%= data[i].id %>">see playlist</a></td>
+                    <th>name</th>
+                    <th>username</th>
+                    <th>see music</th>
                 </tr>
-            <% } %>
-        </tbody>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < data.length; i++) { %>
+                    <tr>
+                        <td> <%= data[i].name %></td>
+                        <td> <%= data[i].username %></td>
+                        <td> <a href="/music/seePlaylist/<%= data[i].id %>" class="seePlaylist"><button class="btn">see playlist</button></a></td>
+                    </tr>
+                <% } %>
+            </tbody>
 
-    </table>
+        </table>
+        
+    </div>
 
-    <a href="/logout"><button>Logout</button></a>
+
+
+    <!-- follow me template -->
+    <div class="made-with-love">
+        Made by 
+        <a target="_blank" href="https://github.io/blackjac7">Febriansyah</a> &
+        <a target="_blank" href="https://github.com/HantuPutih">Farid Juliano</a>
+    </div>
 </body>
 </html>

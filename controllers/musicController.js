@@ -45,8 +45,6 @@ class MusicController {
             res.redirect(`/music/seePlaylist/${user}`)
 
         })
-
-
         .catch(err => {
             const errorMessages = []
 
@@ -133,6 +131,12 @@ class MusicController {
     }
 
     static seePlaylist (req, res) {
+        let success = []
+
+        if (req.query.msg){
+            success = req.query.msg.split(',')
+        }
+        
         User.findAll({
             where: {
                 id: +req.params.id
@@ -141,7 +145,7 @@ class MusicController {
         })
         .then( info => {
             let data = info[0].Music
-            res.render('music/userPlaylist', {data})
+            res.render('music/userPlaylist', {data, success})
         })
         .catch(err => {
             res.send(err)
@@ -178,8 +182,9 @@ class MusicController {
             })
         })
         .then((info ) => {
-            
-            res.redirect(`/music/seePlaylist/${user}`)
+            const success = ['Music Successfully added']
+
+            res.redirect(`/music/seePlaylist/${user}?msg=${success}`)
 
         })
         .catch(err =>  {
