@@ -102,7 +102,7 @@ class MusicController {
 
     static uploadImg(req, res) {
         let id = +req.params.id
-        res.render('music/uploadImg', {id})
+        res.render('music/uploadImg', { id })
     }
 
     static uploadImgPost(req, res) {
@@ -144,6 +144,23 @@ class MusicController {
             res.render('music/userPlaylist', {data})
         })
         .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static othersLiked (req, res) {
+        Music.findAll({
+            where: {
+                id: +req.params.id
+            },
+            include: User
+        })
+        .then(info=> {
+            let data = info[0].Users
+            //res.send(info[0].Users[0].name)
+            res.render('music/othersLiked', {data})
+        })
+        .catch(err=>{
             res.send(err)
         })
     }
