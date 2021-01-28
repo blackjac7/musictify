@@ -11,6 +11,11 @@ class MusicController {
             res.send(err.message)
         })
     }
+    
+    static addMusic(req,res) {
+        let errors = req.query.errors
+        res.render('music/addMusic', {errors})
+    }
 
     static addMusicPost (req,res) {
         Music.create({
