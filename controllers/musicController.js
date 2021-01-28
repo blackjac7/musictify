@@ -1,4 +1,4 @@
-const { Music } = require('../models/index')
+const {Music, Playlist, User} = require('../models/index')
 const upload = require('../helpers/upload')
 
 class MusicController {
@@ -19,6 +19,8 @@ class MusicController {
     }
 
     static addMusicPost (req,res) {
+        let user;
+        let musicId;
         Music.create({
             title: req.body.title,
             artist: req.body.artist,
@@ -26,8 +28,25 @@ class MusicController {
             released_year: req.body.released_year
         })
         .then((data) => {
-            res.redirect('/music')
+            musicId = data.id
+            return User.findAll({ where : {
+                username: req.session.username 
+                }
+            })
         })
+        .then(usr => {
+            user = usr[0].id
+            return Playlist.create({
+                music_id: musicId,
+                user_id: user
+            })
+        })
+        .then(data =>{
+            res.redirect(`/music/seePlaylist/${user}`)
+
+        })
+
+
         .catch(err => {
             const errorMessages = []
 
@@ -110,6 +129,22 @@ class MusicController {
 
                 }
             }
+        })
+    }
+
+    static seePlaylist (req, res) {
+        User.findAll({
+            where: {
+                id: +req.params.id
+            },
+            include: [Music]
+        })
+        .then( info => {
+            let data = info[0].Music
+            res.render('music/userPlaylist', {data})
+        })
+        .catch(err => {
+            res.send(err)
         })
     }
 }

@@ -4,4 +4,6 @@ const UserController = require('../controllers/userController')
 router.get('/', UserController)
 
 
+
+
 module.exports = router

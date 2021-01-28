@@ -31,6 +31,7 @@ class Controller {
             })
 
             res.redirect(`/register?errors=${errorMessages}`)
+            //res.send(err)
         })
     }
 
@@ -56,7 +57,7 @@ class Controller {
             .then(data => {
                 if (data && comparePass(password, data.password)) {
                     req.session.username = username
-                    res.redirect(`/`)
+                    res.redirect(`/`)// userlist
                 }else {
                     const wrongPass = ['Invalid Password']
                     res.redirect(`/login?errors=${wrongPass}`)
@@ -68,9 +69,34 @@ class Controller {
     }
 
     static logout(req, res){
+
         delete req.session.username
         res.redirect('/login')
     }
+
+    static home(req, res) {
+        User.findAll()
+        .then(data=>{
+            res.render('home', {data})
+        })
+        .catch(err=>{
+            res.send(err)
+        })
+    }
+
+    // static tes () {
+    //     User.findAll({
+    //         include: [Music]
+    //     })
+    //     .then(data =>  {
+    //         res.send(data)
+    //     })
+    //     .catch(err => {
+    //         res.send(err)
+    //     })
+
+    // }
+    
 }
 
 module.exports = Controller

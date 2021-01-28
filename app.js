@@ -4,6 +4,7 @@ const router = require('./routes')
 const multer = require('multer')
 const path = require('path')
 
+
 // //set storage engine
 // const storage = multer.diskStorage({
 //     destination: './public/uploads',
@@ -16,10 +17,13 @@ const path = require('path')
 // const upload = multer({
 //     storage: storage
 // }).single('img')
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 const app = express()
 const port = 4000
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Session
 app.use(session({
