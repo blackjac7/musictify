@@ -42,7 +42,7 @@ class MusicController {
             })
         })
         .then(data =>{
-            res.redirect('/music')
+            res.redirect(`/music/seePlaylist/${user}`)
 
         })
 
