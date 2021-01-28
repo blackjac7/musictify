@@ -2,6 +2,16 @@ const {Music, Playlist, User} = require('../models/index')
 const { comparePass } = require('../helpers/hashPass')
 
 class Controller {
+    static home(req, res) {
+        User.findAll()
+        .then(data=>{
+            res.render('home', {data})
+        })
+        .catch(err=>{
+            res.send(err)
+        })
+    }
+    
     static formRegister(req, res){
         let errors = []
 
@@ -72,17 +82,7 @@ class Controller {
 
         delete req.session.username
         res.redirect('/login')
-    }
-
-    static home(req, res) {
-        User.findAll()
-        .then(data=>{
-            res.render('home', {data})
-        })
-        .catch(err=>{
-            res.send(err)
-        })
-    }
+    }   
 
 }
 
