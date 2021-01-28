@@ -9,8 +9,7 @@ router.post('/add', MusicController.addMusicPost)
 
 router.get('/edit/:id', MusicController.editMusic)
 
-
-router.get('/edit/:id', MusicController.editMusicPost)
+router.post('/edit/:id', MusicController.editMusicPost)
 
 router.get('/delete/:id', MusicController.destroyMusic)
 

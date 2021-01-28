@@ -20,9 +20,8 @@ module.exports = (sequelize, DataTypes) => {
   Music.init({
     title:{
       type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          msg: 'Title should not be empty!'
+      validate: { notEmpty: {
+          msg: `Title should not be empty!`
         }
       }
     },
@@ -30,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: 'Artist should not be empty!'
+          msg: ` Artist should not be empty!`
         }
       }
     },
@@ -38,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: 'Genre should not be empty!'
+          msg: ` Genre should not be empty!`
         }
       }
     },
@@ -46,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: 'Released Year should not be empty!'
+          msg: ` Released Year should not be empty!`
         }
       }
     }
