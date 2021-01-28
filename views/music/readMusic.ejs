@@ -28,11 +28,11 @@
                     <td> <%= data[i].genre %>  </td>
                     <td> <%= data[i].released_year %>  </td>
                     <td>
-                        <a href="/edit/<%= data[i].id %>">edit</a>
-                        <a href="/delete/<%= data[i].id %>" onclick="return Confirm('Apakah anda yakin?')">delete</a>
+                        <a href="/music/edit/<%= data[i].id %>">edit</a>
+                        <a href="/music/delete/<%= data[i].id %>" onclick="return Confirm('Apakah anda yakin?')" >delete</a>
                     </td>
                     <td> <a href="/"> see other user who liked this music </a></td>
-                    <td>images</td>
+                    <td><a href="/music/upload/<%= data[i].id%>">upload images</a></td>
                     <!-- plus nanti gambar -->
                 </tr>
             <% } %> 

@@ -1,5 +1,5 @@
 const express = require('express')
-const router = require('./routes/index')
+const router = require('./routes')
 const multer = require('multer')
 const ejs = require('ejs')
 const path = require('path')

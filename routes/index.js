@@ -2,6 +2,7 @@ const router = require('express').Router()
 const musicRouter = require('./music')
 const userRouter = require('./user')
 const UserController = require('../controllers/userController')
+// const music 
 
 router.get('/', (req, res) => {
     res.render('home')

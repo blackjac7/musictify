@@ -4,6 +4,7 @@ class MusicController {
     static readMusic(req, res) {
         Music.findAll()
         .then((data)=> {
+            //res.send(data)
             res.render('music/readMusic', { data })
         })
         .catch(err=> {
@@ -11,13 +12,7 @@ class MusicController {
         })
     }
 
-    static addMusic(req,res) {
-        let errors = req.query.errors
-        res.render('music/addMusic', { errors })
-    }
-
     static addMusicPost (req,res) {
-        console.log(req.body.title)
         Music.create({
             title: req.body.title,
             artist: req.body.artist,
@@ -41,7 +36,7 @@ class MusicController {
     static editMusic (req, res) {
         Music.findByPk(+req.params.id)
         .then (data => {
-            res.render('editMusic', { data })
+            res.render('music/editMusic', { data })
         })
         .catch (err => {
             res.send(err.message)
@@ -76,13 +71,14 @@ class MusicController {
         .then(()=>{
             res.redirect('/music')
         })
-        .ccatch(err => {
+        .catch(err => {
             res.send(err.message)
         })
     }
 
     static uploadImg(req, res) {
-        res.render()
+        let id = +req.params.id
+        res.render('music/uploadImg', {id})
     }
 
     static uploadImgPost(req, res) {
