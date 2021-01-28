@@ -18,8 +18,6 @@ const path = require('path')
 //     storage: storage
 // }).single('img')
 
-app.use(express.static(path.join(__dirname, 'public')))
-
 const app = express()
 const port = 4000
 
