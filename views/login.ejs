@@ -6,6 +6,9 @@
     <title>Login</title>
 </head>
 <body>
+    <% errors.forEach(el => { %>
+        <p style="color: red;"><%= el %></p>
+    <% }) %> 
     <form action="/login" method="post">
 
         <label for="">Username</label><br>

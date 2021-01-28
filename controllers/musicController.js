@@ -12,11 +12,6 @@ class MusicController {
         })
     }
 
-    static addMusic(req,res) {
-        let errors = req.query.errors
-        res.render('music/addMusic', {errors})
-    }
-
     static addMusicPost (req,res) {
         Music.create({
             title: req.body.title,
@@ -25,7 +20,6 @@ class MusicController {
             released_year: req.body.released_year
         })
         .then((data) => {
-            //res.send(data)
             res.redirect('/music')
         })
         .catch(err => {
