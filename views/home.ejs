@@ -6,8 +6,32 @@
     <title>Document</title>
 </head>
 <body>
+    <%- include('./partials/navbar')%>
     <h1>Homepage Musictify</h1>
-    <img src="uploads/img.png" alt="adsd">
+    <h2>welcome</h2>
+
+    <h1>users playlist</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>username</th>
+                <th>see music</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < data.length; i++) { %>
+                <tr>
+                    <td> <%= data[i].name %></td>
+                    <td> <%= data[i].username %></td>
+                    <td> <a href="/music/seePlaylist/<%= data[i].id %>">see playlist</a></td>
+                </tr>
+            <% } %>
+        </tbody>
+
+    </table>
+
     <a href="/logout"><button>Logout</button></a>
 </body>
 </html>

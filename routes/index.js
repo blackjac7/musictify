@@ -15,9 +15,11 @@ router.post('/login', UserController.login)
 
 router.get('/logout', UserController.logout)
 
+
 router.use(auth) // ~~~~~~~~~~~~~ Authentication ~~~~~~~~~~
 
-router.get('/', UserController)
+
+router.get('/', UserController.home)
 
 router.use('/music', musicRouter)
 

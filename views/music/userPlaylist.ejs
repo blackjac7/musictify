@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title></title>
 </head>
 <body>
     <%- include('../partials/navbar')%>
-    <h1>My Playlist</h1>
+    <h1>User Music's</h1>
+
+
     <table border="1">
         <thead>
             <tr>
@@ -17,7 +19,7 @@
                 <th>Released Year</th>
                 <th>actions</th>
                 <th>see other user who liked this music</th>
-                <th>Images</th>
+                <th>album cover</th>
             </tr>
         </thead>
         <tbody>
@@ -30,12 +32,11 @@
                     <td>
                         <a href="/music/edit/<%= data[i].id %>">edit</a>
                         <a href="/music/delete/<%= data[i].id %>" onclick="return confirm('Apakah anda yakin?')" >delete</a>
+                        <a href="/">see playlist</a></td>
                     </td>
-                    
                     <td> <a href="/"> see other user who liked this music </a></td>
                     <% if (data[i].imgData) { %>
                         <td><img src="/uploads/<%= data[i].imgData%>" alt="album Img" width="150" ></td>
-
                     <% } else { %>
                         <td><a href="/music/upload/<%= data[i].id%>">upload images</a></td>
                     <% } %>
@@ -43,6 +44,5 @@
             <% } %> 
         </tbody>
     </table>
-
 </body>
 </html>
