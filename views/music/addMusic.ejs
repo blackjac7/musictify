@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add to your playlist</title>
+</head>
+<body>
+    <%- include('../partials/navbar')%>
+    <h2 style="text-align: center; margin-top: 15px; margin-bottom: 10px; font-family: 'Courier New', Courier, monospace;">Add to your Playlist</h2>
+    
+    <%- include('../partials/addMusic')%>
+    <div class="page">
+        <% if(errors) { %>
+            <p style="color: red;"><%= errors %></p>
+        <% } %> 
+        <div class="card">
+            
+            <form action="/music/add" method="post">
+    
+                <label class="colorText" for="title">Music Title:</label><br>
+                <input type="text" name="title" placeholder="zoom"><br><br>
+    
+                <label class="colorText" for="artist">Artist:</label><br>
+                <input type="text" name="artist" placeholder="Last Dinosaurs"><br><br>
+    
+                <label class="colorText" for="genre">Genre:</label><br>
+                <input type="text" name="genre" placeholder="alternative"><br><br>
+    
+                <label class="colorText" for="released_year">Released Year:</label><br>
+                <input type="number" name="released_year" placeholder="2012"><br><br>
+                <br>
+                <button type="submit">add to my playlist</button>
+            </form>
+        </div><!-- .box -->
+      
+    </div><!-- .page -->
+    
+
+</body>
+</html>

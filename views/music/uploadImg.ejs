@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upload Image</title>
+</head>
+<body>
+    <%- include('../partials/navbar')%>
+    <h1 style="text-align: center; margin-top: 20px;">upload image</h1>
+
+    <%- include('../partials/addMusic')%>
+    <div class="card">
+
+    <form action="/music/upload/<%= id%>" method="post" enctype="multipart/form-data">
+        <br>
+        <label for="img">Upload Image:</label><br><br>
+        <input type="file" id="img" name="img" ><br>
+        <br>
+        <button type="submit">upload</button>
+    </form>
+    </div>
+</body>
+</html>

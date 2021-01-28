@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../partials/navbar')%>
+    <h1 style="text-align: center; margin-top: 20px; margin-bottom: 10px;">Edit Your Music</h1>
+    <%- include('../partials/addMusic')%>
+    <div class="page">
+    <form action="/music/edit/<%= data.id %>" method="post">
+
+        <label for="title">Music Title:</label><br>
+        <input type="text" id="title" name="title" value="<%= data.title %>"><br><br>
+
+        <label for="artist">Artist:</label><br>
+        <input type="text" id="artist" name="artist" value="<%= data.artist %>"><br><br>
+
+        <label for="genre">Genre:</label><br>
+        <input type="text" id="genre" name="genre" value="<%= data.genre %>"><br><br>
+
+        <label for="released_year">Released Year:</label><br>
+        <input type="number" id="released_year" name="released_year" value="<%= data.released_year %>"><br><br>
+        
+        <button type="submit">edit music</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styleLogin.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="container">
+            <h1>Welcome to Musictify..</h1>
+            <% errors.forEach(el => { %>
+                <p style="color: red;"><%= el %></p>
+            <% }) %> 
+
+            <form class="form" action="/login" method="post">
+
+                <input type="text" name="username" placeholder="Username" autocomplete="off"><br><br>
+                <input type="password" name="password" placeholder="Password"><br><br>
+        
+                <button type="submit" id="login-button" style="border-radius: 15px; width: 100px; margin-right: 5px;">Login</button>
+                <a href="/register"><button type="button" style="border-radius: 15px; width: 100px; margin-left: 5px;">Register</button></a>
+            </form><br>
+            
+        </div>
+        
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+<script>
+     $("#login-button").click(function(event){
+		 event.preventDefault();
+	 
+        $('form').fadeOut(500);
+        $('.wrapper').addClass('form-success');
+    });
+</script>
+</body>
+</html>

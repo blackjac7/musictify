@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <%- include('../partials/navbar')%>
+    
+
+    <%- include('../partials/home') %> 
+    <h1 style="margin-top: 30px;">User Music</h1>
+    <% success.forEach(el => { %>
+        <p style="color: rgb(183, 0, 255); text-align: center;"><%= el %></p>
+    <% }) %> 
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Genre</th>
+                <th>Released Year</th>
+                <th>actions</th>
+                <th>see other user who liked this music</th>
+                <th>album cover</th>
+                <th>add</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < data.length; i++) { %> 
+                <tr>
+                    <td> <%= data[i].title %>  </td>
+                    <td> <%= data[i].artist %>  </td>
+                    <td> <%= data[i].genre %>  </td>
+                    <td> <%= data[i].released_year %>  </td>
+                    <td>
+                        <a href="/music/edit/<%= data[i].id %>"><button class="btn">edit</button></a>
+                        <a href="/music/delete/<%= data[i].id %>" onclick="return confirm('Apakah anda yakin?')" ><button class="btn">delete</button></a>
+                        <a href="/music/othersLiked/<%= data[i].id %>"><button style="margin: 5px;" class="btn">see playlist</button></a></td>
+                    </td>
+                    <td> <a href="/music/othersLiked/<%= data[i].id %>"> <button class="btn">see other user who liked this music</button> </a></td>
+                    <% if (data[i].imgData) { %>
+                        <td><img src="/uploads/<%= data[i].imgData%>" alt="album Img" width="150" ></td>
+                    <% } else { %>
+                        <td><a href="/music/upload/<%= data[i].id%>"><button class="btn">upload images</button></a></td>
+                    <% } %>
+                    <td><a href="/music/addToMyPlaylist/<%= data[i].id %>"><button class="btn">add to playlist</button></a></td>
+                </tr>
+            <% } %> 
+        </tbody>
+    </table>
+</body>
+</html>
