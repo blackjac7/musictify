@@ -9,7 +9,6 @@
     <%- include('../partials/navbar')%>
     <h1>User Music's</h1>
 
-
     <table border="1">
         <thead>
             <tr>
@@ -20,6 +19,7 @@
                 <th>actions</th>
                 <th>see other user who liked this music</th>
                 <th>album cover</th>
+                <th>add</th>
             </tr>
         </thead>
         <tbody>
@@ -32,14 +32,15 @@
                     <td>
                         <a href="/music/edit/<%= data[i].id %>">edit</a>
                         <a href="/music/delete/<%= data[i].id %>" onclick="return confirm('Apakah anda yakin?')" >delete</a>
-                        <a href="/">see playlist</a></td>
+                        <a href="/music/othersLiked/<%= data[i].id %>">see playlist</a></td>
                     </td>
-                    <td> <a href="/"> see other user who liked this music </a></td>
+                    <td> <a href="/music/othersLiked/<%= data[i].id %>"> see other user who liked this music </a></td>
                     <% if (data[i].imgData) { %>
                         <td><img src="/uploads/<%= data[i].imgData%>" alt="album Img" width="150" ></td>
                     <% } else { %>
                         <td><a href="/music/upload/<%= data[i].id%>">upload images</a></td>
                     <% } %>
+                    <td><a href="/music/addToMyPlaylist/<%= data[i].id %>">add to my playlist</a></td>
                 </tr>
             <% } %> 
         </tbody>
