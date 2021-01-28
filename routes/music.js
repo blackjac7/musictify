@@ -20,5 +20,7 @@ router.post('/upload/:id', MusicController.uploadImgPost)
 
 router.get('/seePlaylist/:id', MusicController.seePlaylist)
 
+router.get('/othersLiked/:id', MusicController.othersLiked)
+
 
 module.exports = router

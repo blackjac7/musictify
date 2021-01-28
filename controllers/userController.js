@@ -84,19 +84,6 @@ class Controller {
         })
     }
 
-    // static tes () {
-    //     User.findAll({
-    //         include: [Music]
-    //     })
-    //     .then(data =>  {
-    //         res.send(data)
-    //     })
-    //     .catch(err => {
-    //         res.send(err)
-    //     })
-
-    // }
-    
 }
 
 module.exports = Controller
