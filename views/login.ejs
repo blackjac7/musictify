@@ -20,8 +20,8 @@
                 <input type="text" name="username" placeholder="Username" autocomplete="off"><br><br>
                 <input type="password" name="password" placeholder="Password"><br><br>
         
-                <button type="submit" id="login-button">Login</button><br><br>
-                <a href="/register"><button type="button">Register</button></a>
+                <button type="submit" id="login-button" style="border-radius: 15px; width: 100px; margin-right: 5px;">Login</button>
+                <a href="/register"><button type="button" style="border-radius: 15px; width: 100px; margin-left: 5px;">Register</button></a>
             </form><br>
             
         </div>
@@ -44,9 +44,9 @@
      $("#login-button").click(function(event){
 		 event.preventDefault();
 	 
-	 $('form').fadeOut(500);
-	 $('.wrapper').addClass('form-success');
-});
+        $('form').fadeOut(500);
+        $('.wrapper').addClass('form-success');
+    });
 </script>
 </body>
 </html>
