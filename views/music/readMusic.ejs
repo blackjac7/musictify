@@ -32,8 +32,11 @@
                         <a href="/music/delete/<%= data[i].id %>" onclick="return Confirm('Apakah anda yakin?')" >delete</a>
                     </td>
                     <td> <a href="/"> see other user who liked this music </a></td>
-                    <td><a href="/music/upload/<%= data[i].id%>">upload images</a></td>
-                    <!-- plus nanti gambar -->
+                    <% if (data[i].imgData) { %>
+                        <td><img src="../../public/uploads/<%= data[i].imgData%>" alt="album Img" width="200" height="300"></td>
+                    <% } else { %>
+                        <td><a href="/music/upload/<%= data[i].id%>">upload images</a></td>
+                    <% } %>
                 </tr>
             <% } %> 
         </tbody>
