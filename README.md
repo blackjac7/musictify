@@ -48,8 +48,7 @@ Run it with nodemon or others.
 
 ## Technology used
 
-<img src="https://nodejs.org/static/images/logo.svg" width="96" title="Nodejs">
-<img src="https://www.kindpng.com/picc/m/261-2619141_cage-clipart-victorian-cloud-upload-icon-svg-hd.png" width="48" title="Multer">
+<img src="https://nodejs.org/static/images/logo.svg" width="96" title="NodeJS" alt="NodeJS"><img src="https://expressjs.com/images/express-facebook-share.png" width="96" title="ExpressJS" alt="ExpressJS"><img src="https://www.kindpng.com/picc/m/261-2619141_cage-clipart-victorian-cloud-upload-icon-svg-hd.png" width="48" title="Multer" alt="Multer">
 
 ## Demo
 Visit this one to see what [Musictify](https://enigmatic-bastion-95269.herokuapp.com/ "Musictify") is.
