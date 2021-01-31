@@ -10,8 +10,10 @@
     
 
     <%- include('../partials/home') %> 
-    <h1 style="margin-top: 30px;"><%= info[0].name %>  PLaylist</h1>
-
+    <h1 style="margin-top: 30px;"> My Playlist</h1>
+    <% success.forEach(el => { %>
+        <p style="color: rgb(183, 0, 255); text-align: center;"><%= el %></p>
+    <% }) %> 
     <table>
         <thead>
             <tr>
@@ -19,9 +21,9 @@
                 <th>Artist</th>
                 <th>Genre</th>
                 <th>Released Year</th>
+                <th>actions</th>
                 <th>see other user who liked this music</th>
                 <th>music cover</th>
-                <th>add</th>
             </tr>
         </thead>
         <tbody>
@@ -31,19 +33,18 @@
                     <td> <%= data[i].artist %>  </td>
                     <td> <%= data[i].genre %>  </td>
                     <td> <%= data[i].released_year %>  </td>
+                    <td>
+                        <a href="/music/edit/<%= data[i].id %>"><button class="btn btn-action">edit</button></a><br>
+                        <a href="/music/delete/<%= data[i].id %>" onclick="return confirm('Apakah anda yakin?')" ><button class="btn btn-action">delete</button></a>
+                    </td>
                     <td> 
                         <a href="/music/othersLiked/<%= data[i].id %>"> <button class="btn">see other user who liked this music</button></a>
                     </td>
                     <% if (data[i].imgData) { %>
                         <td><img src="/uploads/<%= data[i].imgData%>" alt="album Img" width="150" ></td>
                     <% } else { %>
-                        <td>
-                            <p>User does not upload cover music</p>
-                        </td>
+                        <td><a href="/music/upload/<%= data[i].id%>"><button class="btn">upload images</button></a></td>
                     <% } %>
-                    <td>
-                        <a href="/music/addToMyPlaylist/<%= data[i].id %>"><button class="btn">add to playlist</button></a>
-                    </td>
                 </tr>
             <% } %> 
         </tbody>

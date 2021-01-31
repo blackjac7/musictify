@@ -1,12 +1,23 @@
 const {Music, Playlist, User} = require('../models/index')
 const upload = require('../helpers/upload')
+const { Op } = require('sequelize')
 
 class MusicController {
     static readMusic(req, res) {
-        Music.findAll()
+        let myPlaylist = []
+        
+        User.findAll({
+            where: {
+                username: req.session.username
+            }
+        })
+        .then(userData => {
+            myPlaylist = userData
+
+            return Music.findAll()
+        })
         .then((data)=> {
-            //res.send(data[0].refMusic())
-            res.render('music/readMusic', { data })
+            res.render('music/readMusic', { myPlaylist, data })
         })
         .catch(err=> {
             res.send(err.message)
@@ -15,7 +26,21 @@ class MusicController {
     
     static addMusic(req,res) {
         let errors = req.query.errors
-        res.render('music/addMusic', {errors})
+        let myPlaylist = []
+        
+        User.findAll({
+            where: {
+                username: req.session.username
+            }
+        })
+        .then(userData => {
+            myPlaylist = userData
+
+            res.render('music/addMusic', {myPlaylist, errors})
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 
     static addMusicPost (req,res) {
@@ -57,9 +82,20 @@ class MusicController {
     }
 
     static editMusic (req, res) {
-        Music.findByPk(+req.params.id)
+        let myPlaylist = []
+        
+        User.findAll({
+            where: {
+                username: req.session.username
+            }
+        })
+        .then(userData => {
+            myPlaylist = userData
+
+            return Music.findByPk(+req.params.id)
+        })
         .then (data => {
-            res.render('music/editMusic', { data })
+            res.render('music/editMusic', { myPlaylist, data })
         })
         .catch (err => {
             res.send(err.message)
@@ -100,7 +136,21 @@ class MusicController {
 
     static uploadImg(req, res) {
         let id = +req.params.id
-        res.render('music/uploadImg', { id })
+        let myPlaylist = []
+        
+        User.findAll({
+            where: {
+                username: req.session.username
+            }
+        })
+        .then(userData => {
+            myPlaylist = userData
+
+            res.render('music/uploadImg', { myPlaylist, id })
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 
     static uploadImgPost(req, res) {
@@ -132,20 +182,37 @@ class MusicController {
 
     static seePlaylist (req, res) {
         let success = []
+        let myPlaylist = []
 
         if (req.query.msg){
             success = req.query.msg.split(',')
         }
-        
-        User.findAll({
+
+        User.findAll({ 
             where: {
-                id: +req.params.id
+                username: req.session.username
             },
             include: [Music],
         })
+        .then(userData => {
+            myPlaylist = userData
+
+            if (userData[0].id === +req.params.id){
+                let data = userData[0].Music
+
+                res.render('music/myPlaylist', {myPlaylist, data, success})
+            }else {
+                return User.findAll({
+                    where: {
+                        id: +req.params.id
+                    },
+                    include: [Music],
+                })
+            }       
+        })
         .then( info => {
             let data = info[0].Music
-            res.render('music/userPlaylist', {data, success})
+            res.render('music/userPlaylist', {myPlaylist, info, data})
         })
         .catch(err => {
             res.send(err)
@@ -153,15 +220,26 @@ class MusicController {
     }
 
     static othersLiked (req, res) {
-        Music.findAll({
+        let myPlaylist = []
+        
+        User.findAll({
             where: {
-                id: +req.params.id
-            },
-            include: User
+                username: req.session.username
+            }
+        })
+        .then(userData => {
+            myPlaylist = userData
+
+            return Music.findAll({
+                where: {
+                    id: +req.params.id
+                },
+                include: [User]
+            })
         })
         .then(info=> {
             let data = info[0].Users
-            res.render('music/othersLiked', {data})
+            res.render('music/othersLiked', {myPlaylist, data})
         })
         .catch(err=>{
             res.send(err)
@@ -190,7 +268,6 @@ class MusicController {
         .catch(err =>  {
             res.send(err)
         })
-
     }
 }
 

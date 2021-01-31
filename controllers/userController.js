@@ -1,11 +1,33 @@
 const {Music, Playlist, User} = require('../models/index')
 const { comparePass } = require('../helpers/hashPass')
+const { Op } = require('sequelize')
 
 class Controller {
     static home(req, res) {
-        User.findAll()
-        .then(data=>{
-            res.render('home', {data})
+        const optionOtherUser = {
+            where: {
+                username: {
+                    [Op.ne]: req.session.username
+                }
+            },
+            include: [Music]
+        }
+        const optionMyPlaylist = {
+            where: {
+                username: req.session.username
+            },
+            include: [Music]
+        }
+        let data = []
+
+        User.findAll(optionOtherUser)
+        .then(dataEx=>{
+            data = dataEx
+
+            return User.findAll(optionMyPlaylist)
+        })
+        .then(myPlaylist => {
+            res.render('home', {data, myPlaylist})
         })
         .catch(err=>{
             res.send(err)

@@ -332,11 +332,14 @@ a {
       <a href="/"><i class="fa fa-music"></i>Musictify</a>
     </div>
 
+<% for (let i = 0; i < myPlaylist.length; i++) { %>
+
     <!-- Navbar Links -->
     <ul id="menu">
-      <li><a href="/music">Music</a></li><!--
-   --><li><a href="/music/add">Add New Music</a></li><!--
-   --><li><a href="/logout">Logout</a></li>
+      <li><a href="/music">All Music</a></li>
+      <li><a href="/music/add">Add New Music</a></li>
+      <li><a href="/music/seePlaylist/<%= myPlaylist[i].id %>">My Playlist</a></li>
+      <li><a href="/logout">Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -351,19 +354,15 @@ a {
 
 <div class="overlay-menu">
   <ul id="menu">
-      <li><a href="/music">Music</a></li>
+      <li><a href="/music">All Music</a></li>
       <li><a href="/music/add">Add New Music</a></li>
+      <li><a href="/music/seePlaylist/<%= myPlaylist[i].id %>">My Playlist</a></li>
       <li><a href="/logout">Logout</a></li>
     </ul>
 </div>
 
-    <!-- <ul>
-        <li> <a href="/"> home</a></li>
-        <li> <a href="/login">login</a></li>
-        <li> <a href="/register"> register</a></li>
-        <li> <a href="/music"> music list</a></li>
-        <li> <a href="/music/add"> add music</a></li>
-    </ul> -->
+<% } %>
+    
 
 <script>
      let menuIcon = document.querySelector('.menuIcon');

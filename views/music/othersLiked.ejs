@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Musictify</title>
 </head>
 <body>
     <%- include('../partials/navbar')%>
@@ -12,7 +12,7 @@
     <h1>other liked music</h1>
 
     <div class="tbl-header">
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>name</th>
@@ -21,12 +21,15 @@
             </tr>
         </thead>
         <tbody>
+            
             <% for (let i = 0; i < data.length; i++) { %>
-                <tr>
-                    <td> <%= data[i].name %></td>
-                    <td> <%= data[i].username %></td>
-                    <td> <a href="/music/seePlaylist/<%= data[i].id %>"><button class="btn">see playlist</button></a></td>
-                </tr>
+                <% if (data[i].id !== myPlaylist[0].id){ %>
+                    <tr>
+                        <td> <%= data[i].name %></td>
+                        <td> <%= data[i].username %></td>
+                        <td> <a href="/music/seePlaylist/<%= data[i].id %>"><button class="btn">see playlist</button></a></td>
+                    </tr>
+                <% } %> 
             <% } %>
         </tbody>
     </table>
