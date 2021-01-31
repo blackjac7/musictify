@@ -5,13 +5,13 @@ Welcome to Musictify github repo! You want to join us for developing Musictify? 
 *Main Contributor:*
 - [@blackjac7](https://github.com/blackjac7 "@blackjac7")
 
-- [@Ralfarios](https://github.com/HantuPutih "@HantuPutih")
+- [@HantuPutih](https://github.com/HantuPutih "@HantuPutih")
 
 ## Before you start
 You need [Node.js](https://nodejs.org/en/ "Node.js") to start developing this app.
 
 ### DB Scheme
-![Scheme Pair Project](https://postimg.cc/V0bFQrfd)
+![Scheme Pair Project](https://i.postimg.cc/Xqs15dtc/ERD-Musictify.png)
 
 
 ## Let's get started
